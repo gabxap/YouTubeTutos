@@ -1,0 +1,83 @@
+set number  
+set mouse=a
+set numberwidth=1
+set clipboard=unnamed
+syntax enable
+set showcmd
+set ruler
+set encoding=utf-8
+set showmatch
+set sw=2
+set ruler
+if has('win32') || has('win64')
+  let g:plugged_home = '~/AppData/Local/nvim/plugged'
+else
+  let g:plugged_home = '~/.vim/plugged'
+endif
+
+call plug#begin('~/.vim/plugged')
+
+" Themes
+Plug 'drewtempelmeyer/palenight.vim'
+" IDE
+Plug 'easymotion/vim-easymotion'
+Plug 'scrooloose/nerdtree'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'Yggdroot/indentLine'
+Plug 'dart-lang/dart-vim-plugin' 
+Plug 'natebosch/vim-lsc'
+Plug 'natebosch/vim-lsc-dart'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'thosakwe/vim-flutter' 
+Plug 'voldikss/vim-floaterm'  
+
+call plug#end()
+
+" Theme
+syntax on
+syntax enable
+set background=dark
+set encoding=utf-8
+colorscheme palenight
+let NERDTreeQuitOnOpen = 1
+let g:lsc_auto_map = v:true 
+let g:rainbow_active = 1
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+let mapleader=" "
+nmap <Leader>s <Plug>(easymotion-s2)
+nmap <Leader>nt :NERDTreeFind<CR> 
+nmap <Leader>w :w<CR> 
+nmap <Leader>q :q<CR>
+ 
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+nnoremap <leader>fa :FlutterRun<cr>
+nnoremap <leader>fq :FlutterQuit<cr>
+nnoremap <leader>fr :FlutterHotReload<cr>
+nnoremap <leader>fR :FlutterHotRestart<cr>
+nnoremap <leader>fs :FlutterSplit<cr>
+nnoremap <leader>fe :FlutterEmulators<cr>
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+let g:floaterm_keymap_toggle = '<F1>'
+let g:floaterm_keymap_next   = '<F2>'
+let g:floaterm_keymap_prev   = '<F3>'
+let g:floaterm_keymap_new    = '<F4>'
+
+" Floaterm
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
